@@ -1,5 +1,13 @@
 #! /bin/sh
 
+REDHAT_RELEASE_FILE=/etc/redhat-release
+
+if [[ ! -f "$REDHAT_RELEASE_FILE" ]]
+then
+  echo "This installer can only be run on RHEL systems"
+  exit 1
+fi
+
 MAJOR_VERSION=`cat /etc/os-release | grep -w VERSION_ID | cut -d= -f2 | tr -d '"' | cut -d. -f1`
 
 FILE=/etc/pki/consumer/cert.pem
