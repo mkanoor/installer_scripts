@@ -2,6 +2,7 @@
 
 subscription-manager register --serverurl https://subscription.rhsm.qa.redhat.com/subscription --username $USERNAME --password $PASSWORD --auto-attach
 subscription-manager repos --enable ansible-2.9-for-rhel-8-x86_64-rpms
+subscription-manager repos --enable rhel-7-server-ansible-2.9-rpms
 yum -y install ansible
 ansible-galaxy install mkanoor.catalog_receptor_installer
 
