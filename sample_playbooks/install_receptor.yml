@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  become: true
+  vars:
+    tower_url: "https://ansible_tower_ip"
+    tower_user: "admin"
+    tower_password: "secret"
+    tower_validate_certs: no
+    c_rh_c_host: "cloud.redhat.com"
+    rhn_subscription_url: "https://subscription.rhsm.qa.redhat.com/subscription"
+    skip_systemd: 1
+  roles:
+    - mkanoor.catalog_receptor_installer
