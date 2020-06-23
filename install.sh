@@ -31,7 +31,6 @@ dnf -y install ansible
 ansible-galaxy install mkanoor.catalog_receptor_installer
 
 # We need the latest python-dateutil package for the Receptor
-pip3 install --upgrade pip3
 pip3 install python-dateutil==2.8.1
 
 # When running in CI environment we need to check the cert
