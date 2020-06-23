@@ -34,11 +34,6 @@ ansible-galaxy install mkanoor.catalog_receptor_installer
 
 # We need the latest python-dateutil package for the Receptor
 pip install python-dateutil==2.8.1
-if [[ "$MAJOR_VERSION" -eq 7 ]]
-then
-  yum install -y python2-jmespath
-  pip3 install jmespath
-fi
 
 # When running in CI environment we need to check the cert
 # is signed by Redhat IT ROOT CA
@@ -49,5 +44,11 @@ update-ca-trust
 # Setup RPM repo for the python receptor & catalog plugin
 yum-config-manager --nogpgcheck --add-repo=http://dogfood.sat.engineering.redhat.com/pulp/repos/Sat6-CI/QA/Satellite_6_8_with_RHEL7_Server/custom/Satellite_6_8_Composes/Satellite_6_8_RHEL7/
 yum-config-manager --nogpgcheck --add-repo=http://file.rdu.redhat.com/mkanoor/
+
+if [[ "$MAJOR_VERSION" -eq 7 ]]
+then
+  yum install -y python2-jmespath
+  pip3 install jmespath
+fi
 
 ansible-playbook sample_playbooks/install_receptor.yml
