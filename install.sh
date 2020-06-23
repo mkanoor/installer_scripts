@@ -42,7 +42,7 @@ wget -P /etc/pki/ca-trust/source/anchors/ https://password.corp.redhat.com/RH-IT
 update-ca-trust
 
 # Setup RPM repo for the python receptor & catalog plugin
-yum-config-manager --add-repo=http://dogfood.sat.engineering.redhat.com/pulp/repos/Sat6-CI/QA/Satellite_6_8_with_RHEL7_Server/custom/Satellite_6_8_Composes/Satellite_6_8_RHEL7/
-yum-config-manager --add-repo=http://file.rdu.redhat.com/mkanoor/
+yum-config-manager --nogpgcheck --add-repo=http://dogfood.sat.engineering.redhat.com/pulp/repos/Sat6-CI/QA/Satellite_6_8_with_RHEL7_Server/custom/Satellite_6_8_Composes/Satellite_6_8_RHEL7/
+yum-config-manager --nogpgcheck --add-repo=http://file.rdu.redhat.com/mkanoor/
 
 ansible-playbook sample_playbooks/install_receptor.yml
