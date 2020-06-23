@@ -34,6 +34,11 @@ ansible-galaxy install mkanoor.catalog_receptor_installer
 
 # We need the latest python-dateutil package for the Receptor
 pip install python-dateutil==2.8.1
+if [[ "$MAJOR_VERSION" -eq 7 ]]
+then
+  yum install -y python2-jmespath
+  pip3 install jmespath
+fi
 
 # When running in CI environment we need to check the cert
 # is signed by Redhat IT ROOT CA
