@@ -31,8 +31,8 @@ dnf -y install ansible
 ansible-galaxy install mkanoor.catalog_receptor_installer
 
 # We need the latest python-dateutil package for the Receptor
-pip install --upgrade pip
-pip install python-dateutil=2.8.1
+pip3 install --upgrade pip3
+pip3 install python-dateutil==2.8.1
 
 # When running in CI environment we need to check the cert
 # is signed by Redhat IT ROOT CA
@@ -44,4 +44,4 @@ update-ca-trust
 dnf config-manager --add-repo=http://dogfood.sat.engineering.redhat.com/pulp/repos/Sat6-CI/QA/Satellite_6_8_with_RHEL7_Server/custom/Satellite_6_8_Composes/Satellite_6_8_RHEL7/
 dnf config-manager --add-repo=http://file.rdu.redhat.com/mkanoor/
 
-ansible-playbook /playbooks/install_receptor.yml
+ansible-playbook sample_playbooks/install_receptor.yml
