@@ -27,13 +27,19 @@ else
   exit 1
 fi
 
+if [[ "$MAJOR_VERSION" -eq 7 ]]
+then
+  yum install -y python3
+  pip3 install jmespath
+fi
+
 yum -y install yum-utils
 yum -y install wget
 yum -y install ansible
 ansible-galaxy install mkanoor.catalog_receptor_installer
 
 # We need the latest python-dateutil package for the Receptor
-pip install python-dateutil==2.8.1
+pip3 install python-dateutil==2.8.1
 
 # When running in CI environment we need to check the cert
 # is signed by Redhat IT ROOT CA
@@ -48,7 +54,6 @@ yum-config-manager --nogpgcheck --add-repo=http://file.rdu.redhat.com/mkanoor/
 if [[ "$MAJOR_VERSION" -eq 7 ]]
 then
   yum install -y python2-jmespath
-  pip3 install jmespath
 fi
 
 ansible-playbook sample_playbooks/install_receptor.yml
