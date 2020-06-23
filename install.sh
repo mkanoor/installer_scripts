@@ -53,7 +53,7 @@ yum-config-manager --nogpgcheck --add-repo=http://file.rdu.redhat.com/mkanoor/
 
 if [[ "$MAJOR_VERSION" -eq 7 ]]
 then
-  yum install -y python2-jmespath
+  # yum install -y python2-jmespath
 fi
 
 ansible-playbook sample_playbooks/install_receptor.yml
