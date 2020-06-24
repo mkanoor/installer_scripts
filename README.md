@@ -33,17 +33,19 @@ It uses an ansible role to install the receptor and the plugin, and configures i
  - Run the following command ( **install.sh sample_playbooks/vm/install_receptor.yml**)
  - After the install completes you should be able to have a system service running for the receptor
 
-**Usage: Container**
+**Usage: Docker Container**
 
+- Docker has to be installed.
 - Clone this repository to your environment
 - Edit the sample_playbooks/container/install_receptor.yml playbook and update the Ansible Tower information
 - The attached Dockerfile uses private images so you have to login using docker login
 - As part of the docker build you have to pass in the user and password for registering your container with Red Hat Subscription Manager
 - After the installation is configured the receptor would be running in the container.
+- When running the container we mount the local directory into the container, with the -v option, the path needs to be fully qualified.
 
 
 **docker login https://registry.redhat.io**
 
 **docker build --build-arg USERNAME=user --build-arg  PASSWORD=password --tag receptor_installer .**
 
-**docker run -it  -v `pwd`/sample_playbooks/container:/playbooks receptor_installer**
+**docker run -it  -v <<your_current_dir>>/sample_playbooks/container:/playbooks receptor_installer**
