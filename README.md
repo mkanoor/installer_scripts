@@ -1,4 +1,4 @@
-Catalog Receptor Installer Scripts
+**Catalog Receptor Installer Scripts**
 
 This repository consists of scripts that can be used to install and configure
 
@@ -13,7 +13,7 @@ The Catalog Receptor can be installed on
  2. VM
  3. Physical 
 
-Pre Requisites
+**Pre Requisites**
 
  1. RHEL 7 or RHEL 8 with valid subscriptions.
  2. Python 3.6
@@ -33,11 +33,14 @@ It uses an ansible role to install the receptor and the plugin, and configures i
  - Run the following command ( **install.sh sample_playbooks/vm/install_receptor.yml**)
  - After the install completes you should be able to have a system service running for the receptor
 
-**Usage: Container **
+**Usage: Container**
+
 - Clone this repository to your environment
 - Edit the sample_playbooks/container/install_receptor.yml playbook and update the Ansible Tower information
-- The attached Dockerfile uses private images so you have to login
+- The attached Dockerfile uses private images so you have to login using docker login
+- As part of the docker build you have to pass in the user and password for registering your container with Red Hat Subscription Manager
 
--   **docker login https://registry.redhat.io**
--  **docker build --build-arg USERNAME=user --build-arg  PASSWORD=password --tag receptor_installer .**
-- **docker run -it  -v ./sample_playbooks/container:/playbooks receptor_installer**
+
+**docker login https://registry.redhat.io**
+ **docker build --build-arg USERNAME=user --build-arg  PASSWORD=password --tag receptor_installer .**
+ **docker run -it  -v ./sample_playbooks/container:/playbooks receptor_installer**
