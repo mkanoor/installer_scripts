@@ -63,6 +63,12 @@ then
   exit 1
 fi
 
+if [[ $# -eq 0 ]]
+then
+    echo "usage: install.sh playbook"
+    exit 1
+fi
+
 if [[ ! -f "$1" ]]
 then
   echo "Playbook file $1 not found"
