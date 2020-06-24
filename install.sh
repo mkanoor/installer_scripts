@@ -118,4 +118,4 @@ then
   install python2-jmespath
 fi
 
-ansible-playbook sample_playbooks/install_receptor.yml
+ansible-playbook sample_playbooks/vm/install_receptor.yml
