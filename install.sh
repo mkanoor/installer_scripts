@@ -63,7 +63,11 @@ then
   exit 1
 fi
 
-MAJOR_VERSION=`cat /etc/os-release | grep -w VERSION_ID | cut -d= -f2 | tr -d '"' | cut -d. -f1`
+if [[ ! -f "$1" ]]
+then
+  echo "Playbook file $1 not found"
+  exit 1
+fi
 
 # Register the system if we dont have certs
 FILE=/etc/pki/consumer/cert.pem
@@ -72,6 +76,7 @@ then
   register_system
 fi
 
+MAJOR_VERSION=`cat /etc/os-release | grep -w VERSION_ID | cut -d= -f2 | tr -d '"' | cut -d. -f1`
 if [[ "$MAJOR_VERSION" -eq 8 ]]
 then
   subscription-manager repos --enable ansible-2.9-for-rhel-8-x86_64-rpms
@@ -118,4 +123,5 @@ then
   install python2-jmespath
 fi
 
-ansible-playbook sample_playbooks/vm/install_receptor.yml
+echo "Running Playbook $1"
+ansible-playbook $1
