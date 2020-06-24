@@ -1,4 +1,4 @@
-**Catalog Receptor Installer Scripts**
+# Catalog Receptor Installer Scripts
 
 This repository consists of scripts that can be used to install and configure
 
@@ -21,13 +21,13 @@ The Catalog Receptor can be installed on
 
  1. Python 3.6
  2. Ansible 2.9
- 3. Ansible Role (catalog_receptor_installer from Ansible Galaxy)
+ 3. [Ansible Role](https://galaxy.ansible.com/mkanoor/catalog_receptor_installer)
 
 The Ansible role installs the receptor and the plugin, and configures it so its visible in the cloud.redhat.com. After the installation is successful we
 1. Add a Source in the cloud.redhat.com
 2. Add an End Point for this receptor node
 
-**Usage: VM or Physical Machine**
+## Usage: VM or Physical Machine
 
  - Clone this repository to your VM or Physical Machine
  - Edit the *sample_playbooks/vm/install_receptor.yml* playbook and update the Ansible Tower information
@@ -38,7 +38,7 @@ The Ansible role installs the receptor and the plugin, and configures it so its 
  - Run the following command ( **install.sh sample_playbooks/vm/install_receptor.yml**)
  - After the install completes you should be able to have a system service running for the receptor
 
-**Usage: Docker Container**
+## Usage: Docker Container
 
 - Docker has to be installed.
 - Clone this repository to your environment
@@ -59,3 +59,4 @@ or
 **docker build --build-arg RHSM_URL=<<rhsm_qa_url>> --build-arg USERNAME=<<your_rhn_user>> --build-arg  PASSWORD=<<your_rhn_password>> --tag receptor_installer .**
 
 **docker run -it  -v <<your_current_dir>>/sample_playbooks/container:/playbooks receptor_installer**
+
