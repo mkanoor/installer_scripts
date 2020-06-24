@@ -32,8 +32,8 @@ The Ansible role installs the receptor and the plugin, and configures it so its 
  - Clone this repository to your VM or Physical Machine
  - Edit the *sample_playbooks/vm/install_receptor.yml* playbook and update the Ansible Tower information
  - If your system needs to be registered with Red Hat Subscription Manager please set the following environment variables
- - **export RHN_USER=<your_rhn_username>**
- - **export RHN_PASSWORD=< your RHN password>**
+ - **export RHN_USER=<<your_rhn_username>>**
+ - **export RHN_PASSWORD=<<your RHN password>>**
  - **export RHSM_URL=<<Your QA/CI Subscription Manager URL>> (optional)**
  - Run the following command ( **install.sh sample_playbooks/vm/install_receptor.yml**)
  - After the install completes you should be able to have a system service running for the receptor
@@ -52,10 +52,10 @@ The Ansible role installs the receptor and the plugin, and configures it so its 
 
 **docker login https://registry.redhat.io**
 
-**docker build --build-arg USERNAME=<<user>> --build-arg  PASSWORD=<<password>> --tag receptor_installer .**
+**docker build --build-arg USERNAME=<<your_rhn_user>> --build-arg  PASSWORD=<<your_rhn_password>> --tag receptor_installer .**
 
 or
 
-**docker build --build-arg RHSM_URL=<<rhsm_qa_url>> --build-arg USERNAME=<<user>> --build-arg  PASSWORD=<<password>> --tag receptor_installer .**
+**docker build --build-arg RHSM_URL=<<rhsm_qa_url>> --build-arg USERNAME=<<your_rhn_user>> --build-arg  PASSWORD=<<your_rhn_password>> --tag receptor_installer .**
 
 **docker run -it  -v <<your_current_dir>>/sample_playbooks/container:/playbooks receptor_installer**
