@@ -16,8 +16,10 @@ The Catalog Receptor can be installed on
 **Pre Requisites**
 
  1. RHEL 7 or RHEL 8 with valid subscriptions.
- 2. Python 3.6
- 3. Ansible 2.9
+
+** The install script and Dockerfile will try to install the following pre-requisites for you **
+ 1. Python 3.6
+ 2. Ansible 2.9
 
 It uses an ansible role to install the receptor and the plugin, and configures it so its visible in the cloud.redhat.com. After the installation is successful we
 1. Add a Source in the cloud.redhat.com
