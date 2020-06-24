@@ -1,5 +1,20 @@
 #! /bin/sh
 
+# If the system is not registered. Please set the following
+# environment variables, and the script will try to register
+# the systemi for you
+# export RHN_USER=your_username
+# export RHN_PASSWORD=your_password
+# Optionally you can set the RHSM_URL if you have a QA or Dev System
+# export RHSM_URL=your_rhsm_url
+
+# Pre Requisites
+# Python 3.6
+# Ansible 2.9
+
+# Temporary pre requisites
+# wget
+# yum-utils
 
 function install() {
    yum list installed | grep $1
@@ -17,6 +32,29 @@ function install() {
    fi
 }
 
+function register_system() {
+  if [[ -z "${RHN_USER}" ]]
+  then 
+    echo "Please set the environment variable RHN_USER so we can register this system"
+    exit 1
+  fi
+
+  if [[ -z "${RHN_PASSWORD}" ]]
+  then 
+    echo "Please set the environment variable RHN_PASSWORD so we can register this system"
+    exit 1
+  fi
+
+  rhsm_url="${RHSM_URL:-https://subscription.rhsm.redhat.com/subscription}"
+  subscription-manager register --serverurl $rhsm_url --username $RHN_USER --password $RHN_PASSWORD --auto-attach
+
+  if [[ $? -ne 0 ]]
+  then
+    echo "Registration failed, exiting"
+    exit 1
+  fi
+}
+
 REDHAT_RELEASE_FILE=/etc/redhat-release
 
 if [[ ! -f "$REDHAT_RELEASE_FILE" ]]
@@ -27,10 +65,11 @@ fi
 
 MAJOR_VERSION=`cat /etc/os-release | grep -w VERSION_ID | cut -d= -f2 | tr -d '"' | cut -d. -f1`
 
+# Register the system if we dont have certs
 FILE=/etc/pki/consumer/cert.pem
 if [[ ! -f "$FILE" ]]
 then
-subscription-manager register --serverurl https://subscription.rhsm.qa.redhat.com/subscription --username $USERNAME --password $PASSWORD --auto-attach
+  register_system
 fi
 
 if [[ "$MAJOR_VERSION" -eq 8 ]]
@@ -50,9 +89,15 @@ then
   pip3 install jmespath
 fi
 
+# Package needed to add temporary repos till we get an official repository
 install yum-utils
+
+# Package needed to fetch the IT ROOT CA certificate
 install wget
+
 install ansible
+
+# Install the Ansible Galaxy Role for the installer
 ansible-galaxy install mkanoor.catalog_receptor_installer
 
 # We need the latest python-dateutil package for the Receptor
