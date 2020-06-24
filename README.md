@@ -46,4 +46,4 @@ It uses an ansible role to install the receptor and the plugin, and configures i
 
 **docker build --build-arg USERNAME=user --build-arg  PASSWORD=password --tag receptor_installer .**
 
-**docker run -it  -v ./sample_playbooks/container:/playbooks receptor_installer**
+**docker run -it  -v `pwd`/sample_playbooks/container:/playbooks receptor_installer**

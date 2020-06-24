@@ -27,9 +27,6 @@ ENV PYTHONPATH /opt/app-root/lib/python3.6/site-packages:$PYTHON_PATH
 # Setup RPM repo for the python receptor & catalog plugin
 RUN dnf config-manager --add-repo=http://dogfood.sat.engineering.redhat.com/pulp/repos/Sat6-CI/QA/Satellite_6_8_with_RHEL7_Server/custom/Satellite_6_8_Composes/Satellite_6_8_RHEL7/
 RUN dnf config-manager --add-repo=http://file.rdu.redhat.com/mkanoor/
-RUN subscription-manager remove --all
-RUN /bin/rm -f /etc/pki/consumer/*.pem
-
 
 
 COPY entrypoint.sh /bin/entrypoint.sh
