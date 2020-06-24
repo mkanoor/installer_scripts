@@ -1,5 +1,22 @@
 #! /bin/sh
 
+
+function install() {
+   yum list installed | grep $1
+   if [[ $? -eq 0 ]]
+   then
+     echo "Package $1 is already installed"
+   else
+     echo "Attempting to install $1"
+     yum install -y $1
+     if [[ $? -ne 0 ]]
+     then
+       echo "Could not install package $1 hence exiting"
+       exit 1
+     fi
+   fi
+}
+
 REDHAT_RELEASE_FILE=/etc/redhat-release
 
 if [[ ! -f "$REDHAT_RELEASE_FILE" ]]
@@ -29,13 +46,13 @@ fi
 
 if [[ "$MAJOR_VERSION" -eq 7 ]]
 then
-  yum install -y python3
+  install python3
   pip3 install jmespath
 fi
 
-yum -y install yum-utils
-yum -y install wget
-yum -y install ansible
+install yum-utils
+install wget
+install ansible
 ansible-galaxy install mkanoor.catalog_receptor_installer
 
 # We need the latest python-dateutil package for the Receptor
@@ -53,7 +70,7 @@ yum-config-manager --nogpgcheck --add-repo=http://file.rdu.redhat.com/mkanoor/
 
 if [[ "$MAJOR_VERSION" -eq 7 ]]
 then
-  # yum install -y python2-jmespath
+  install python2-jmespath
 fi
 
 ansible-playbook sample_playbooks/install_receptor.yml
