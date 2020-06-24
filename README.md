@@ -21,8 +21,9 @@ The Catalog Receptor can be installed on
 
  1. Python 3.6
  2. Ansible 2.9
+ 3. Ansible Role (catalog_receptor_installer from Ansible Galaxy)
 
-It uses an ansible role to install the receptor and the plugin, and configures it so its visible in the cloud.redhat.com. After the installation is successful we
+The Ansible role installs the receptor and the plugin, and configures it so its visible in the cloud.redhat.com. After the installation is successful we
 1. Add a Source in the cloud.redhat.com
 2. Add an End Point for this receptor node
 
