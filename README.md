@@ -17,7 +17,8 @@ The Catalog Receptor can be installed on
 
  1. RHEL 7 or RHEL 8 with valid subscriptions.
 
-** The install script and Dockerfile will try to install the following pre-requisites for you **
+**The install script and Dockerfile will try to install the following pre-requisites for you**
+
  1. Python 3.6
  2. Ansible 2.9
 
