@@ -52,10 +52,10 @@ The Ansible role installs the receptor and the plugin, and configures it so its 
 
 **docker login https://registry.redhat.io**
 
-**docker build --build-arg USERNAME=user --build-arg  PASSWORD=password --tag receptor_installer .**
+**docker build --build-arg USERNAME=<<user>> --build-arg  PASSWORD=<<password>> --tag receptor_installer .**
 
 or
 
-**docker build --build-arg RHSM_URL=rhsm_qa_url --build-arg USERNAME=user --build-arg  PASSWORD=password --tag receptor_installer .**
+**docker build --build-arg RHSM_URL=<<rhsm_qa_url>> --build-arg USERNAME=<<user>> --build-arg  PASSWORD=<<password>> --tag receptor_installer .**
 
 **docker run -it  -v <<your_current_dir>>/sample_playbooks/container:/playbooks receptor_installer**
